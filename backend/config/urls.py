@@ -19,9 +19,10 @@ from django.urls import path
 from strawberry.django.views import GraphQLView
 from inventory.schema import schema
 from inventory.views import warehouse_webhook
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('graphql/', GraphQLView.as_view(schema=schema)),
+    path('graphql/', csrf_exempt(GraphQLView.as_view(schema=schema))),
     path('api/webhooks/inventory/', warehouse_webhook),
 ]

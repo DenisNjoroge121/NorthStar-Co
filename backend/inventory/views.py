@@ -8,7 +8,6 @@ from .models import Product
 # Create your views here.
 
 @csrf_exempt
-@require_POST
 def warehouse_webhook(request):
     try:
         data = json.loads(request.body)

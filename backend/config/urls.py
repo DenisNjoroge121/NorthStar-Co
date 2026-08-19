@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from strawberry.django.views import GraphQLView
+from inventory.schema import schema
+from inventory.views import warehouse_webhook
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('graphql/', GraphQLView.as_view(schema=schema)),
+    path('api/webhooks/inventory/', warehouse_webhook),
 ]
